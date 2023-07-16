@@ -4,7 +4,7 @@ const date = require(__dirname + "/date.js");
 
 const app = express();
 
-let items = [];
+const items = ["Buy food", "Cook food", "Eat food"];
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,14 +13,14 @@ app.use(express.static("public"));
 
 app.get("/", function (req, res) {
     
-    let day = date();
+    const day = date.getDay();
 
     res.render("list", {kindOfDay: day, newListItems: items});
 });
 
 /* Form post request accepting */
 app.post("/", function(req, res) {
-   let item = req.body.newItem
+   const item = req.body.newItem
    
    items.push(item);
 
